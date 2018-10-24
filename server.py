@@ -53,7 +53,7 @@ def login_step2():
     user_email = request.forms.get('email')
     session = bottle.request.environ.get('beaker.session')
     if  user_email not in session:
-        flow = flow_from_clientsecrets("client_secret_236907109154-1us7tahjvssjcmtfk3orivipcjr4lult.apps.googleusercontent.com.json",scope='https://www.googleapis.com/auth/plus.me https://www.googleapis.com/auth/userinfo.email', redirect_uri="http://localhost:80/redirect")
+        flow = flow_from_clientsecrets("client_secret_236907109154-1us7tahjvssjcmtfk3orivipcjr4lult.apps.googleusercontent.com.json",scope='https://www.googleapis.com/auth/plus.me https://www.googleapis.com/auth/userinfo.email', redirect_uri="http://35.175.88.130:80/redirect")
         auth_uri = flow.step1_get_authorize_url()
         bottle.redirect(str(auth_uri))
     else:
