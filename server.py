@@ -101,4 +101,4 @@ def result():
     keywords = request.forms.get('keywords')
     return template('index',keywords=keywords,record=record, user_email=user_email)
 
-run(app=app, host='0.0.0.0', port=80)
+run(app=app, host='35.175.88.130', port=80)
