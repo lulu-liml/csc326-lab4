@@ -75,7 +75,7 @@ def redirect_page():
     CLIENT_ID = '236907109154-1us7tahjvssjcmtfk3orivipcjr4lult.apps.googleusercontent.com'
     CLIENT_SECRET = 'mvAagtXMQyUTMS0EMkTRhsOM'
     SCOPE = 'https://www.googleapis.com/auth/calendar'
-    REDIRECT_URI = 'http://localhost:80/redirect'
+    REDIRECT_URI = 'http://35.175.88.130:80/redirect'
     code = request.query.get('code', '')
     flow = OAuth2WebServerFlow(client_id=CLIENT_ID,client_secret=CLIENT_SECRET,scope=SCOPE,redirect_uri=REDIRECT_URI)        
     credentials = flow.step2_exchange(code)
