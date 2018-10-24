@@ -43,7 +43,7 @@ def index():
         
     return template('index',keywords='',record=record,  user_email=user_email)
 
-@route('/login_step1',method='GET')
+@route('/login_step1',method='POST')
 def login_step1():
     return template('login')
 @route('/login_step2',method='GET')
