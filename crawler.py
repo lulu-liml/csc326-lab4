@@ -21,7 +21,7 @@
 
 import urllib2
 import urlparse
-from bs4 import BeautifulSoup
+from BeautifulSoup import *
 from collections import defaultdict
 from collections import OrderedDict
 import re
