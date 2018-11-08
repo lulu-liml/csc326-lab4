@@ -410,6 +410,7 @@ class crawler(object):
             
 
 if __name__ == "__main__":
+    print ("Start running cralwer.py, please make sure you have redis server started.")
     bot = crawler(None, "urls.txt")
     bot.crawl(depth=1)
     page_rank = pagerank.page_rank(bot._links)
@@ -432,6 +433,8 @@ if __name__ == "__main__":
     redis_db.set('inverted_index',inverted_index)
     redis_db.set('resolved_inverted_index',resolved_inverted_index)
     redis_db.set('url_id_lexicon',lexicon)
+    
+    print ("All set! You may now run server.py!")
     
     
     #print out the results

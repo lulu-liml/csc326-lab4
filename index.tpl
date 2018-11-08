@@ -6,22 +6,16 @@
 	    text-align: left;
 	    padding: 8px;
 	}
-
+	
 	ul {
-	  	list-style-type: none;
-		position:absolute;
-		bottom:10%;
-		left: 50%;
-		transform: translate(-50%, -50%);
+	  list-style-type: none;
 	}
 	
 	ul li{
 		display:inline;
 	}
-	ul li input[type=submit] {
-	}
 </style>
-<body style="height:100%">
+<body>
 % if user_email:
 	<form action="/logout" method="post">
         <input value="Sign out" type="submit" style="float:right;margin-left:0.5em"/>
@@ -90,9 +84,9 @@
 	  num_of_page = len(ranked_url)/5+1     
 	  curr_page = int(page_num)
 %>
-	<table id=”results” style="position: absolute;left:35%">
+	<table id=”results” style="margin:auto">
 		<tr style="font-size:1.5em">
-			<th>No</th>
+			<th>Rank</th>
 			<th>Urls</th>
 		</tr>
 <%

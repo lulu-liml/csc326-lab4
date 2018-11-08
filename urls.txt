@@ -1,4 +1,3 @@
 https://www.utoronto.ca/
-http://www.rosi.utoronto.ca/
-https://www.utoronto.ca/faculty-staff
 https://www.utoronto.ca/donors
+http://www.eecg.toronto.edu/
