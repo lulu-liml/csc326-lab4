@@ -139,4 +139,4 @@ def result():
     page_num = 1
     return template('index',keywords=keywords,record=record, user_email=user_email,resolved_inverted_index=resolved_inverted_index, lexicon=lexicon,page_rank=page_rank,page_num=page_num)
 
-run(app=app, host='0.0.0.0', port=8080)
+run(app=app, host='0.0.0.0', port=80)
