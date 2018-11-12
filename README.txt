@@ -1,8 +1,10 @@
 1.General background information
   (1)File description
-     url.text-> it contains three urls: 1.https://www.utoronto.ca/ 
+     url.text-> it contains five urls: 1.https://www.utoronto.ca/ 
                                         2.https://www.utoronto.ca/donors     
                                         3.http://www.eecg.toronto.edu/ (as required for AWS Deployment)
+                                        4.http://www.rosi.utoronto.ca/
+                                        5.https://www.utoronto.ca/faculty-staff
 
      crawler.py-> 1.depth is set to 1. 
                   2.You need to have redis server running before run python crawler.py.
@@ -24,8 +26,8 @@
   >>sudo nohup python server.py       //Start the website server
 
   Public IP address of live web server (for now)
-  Public IP address is 18.209.198.232
-  Public DNS is ec2-18-209-198-232.compute-1.amazonaws.com
+  Public IP address is 174.129.152.66
+  Public DNS is ec2-174-129-152-66.compute-1.amazonaws.com
 
 3.Benchmark setup
   (1)Use the Apache benchmarking tool.
