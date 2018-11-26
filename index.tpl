@@ -2,11 +2,11 @@
     <title>Keyword search enginee</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
-	<link rel="stylesheet" href="https://jqueryui.com/resources/demos/style.css" />
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<link rel="stylesheet" href="/static/jquery-ui.css" />
+	<link rel="stylesheet" href="/static/style.css" />
+	<script src="/static/jquery.min.js"></script>
+	<script src="/static/jquery-1.12.4.js"></script>
+	<script src="/static/jquery-ui.js"></script>
 	<script>
 	  $(function() {
 		var elems = document.getElementById('words').innerHTML;
