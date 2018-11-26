@@ -1,5 +1,39 @@
 <head>
     <title>Keyword search enginee</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
+	<link rel="stylesheet" href="https://jqueryui.com/resources/demos/style.css" />
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<script>
+	  $(function() {
+		var elems = document.getElementById('words').innerHTML;
+		elems = JSON.stringify(elems)
+		elems = JSON.parse("["+elems+"]")[0].trim();
+		elems = JSON.parse(elems).sort();
+	    $( "#keyword" ).autocomplete({
+			source: function(request, response) {
+			   var results = $.map(elems, function(item) {
+				   if( item.startsWith(request.term)){
+				       return item;
+				   }
+				   else{
+				       return null;
+				   }
+			   });	
+			   if (!results.length){
+			   	results = [{
+			   		label: 'No matches found',
+					value: ' '
+			   	}]
+			   }
+			   response(results.slice(0, 10));
+			}
+	    });
+	  });
+	  </script>
 </head>
 <style>
 	th {
@@ -32,15 +66,16 @@
 	
 % end
     <div><h1 style="text-align:center;">NEET SEARCH ENGINEE</h1> 
-	<div><image src="/static/xiaomai.jpeg" style="width:10%;margin:auto;display:block"/></div>
+	<div><image src="/static/xiaomai2.gif" style="padding-bottom:1em;width:10em;margin:auto;display:block"/></div>
 	<form action="/" method="post">
-    	<div style="text-align:center">Please enter the keywords: <input name="keywords" type="text" />
-        <input value="search" type="submit" />
+    	<div style="text-align:center">Please enter the keywords: <input name="keywords" type="text" id="keyword" style="width:12%"/>
+        <input value="search" type="submit"/>
 		</div>
     </form>
 	
+	<div id="words" style="display:none"> {{words}} </div>
 <!--show the results if keywords entered -->
-% if keywords: 
+% if keywords.strip(): 
 %	word = keywords.lower().split()[0]
 	<h1 align="center">Search for "{{word}}"</h1>
 

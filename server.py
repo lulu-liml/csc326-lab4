@@ -40,6 +40,11 @@ inverted_index = json.loads(inverted_index)
 resolved_inverted_index = json.loads(resolved_inverted_index)
 lexicon = json.loads(lexicon)
 
+# get words for autocomplete
+words = list(resolved_inverted_index.keys())
+words = [str(i) for i in words]
+words = json.dumps(words)
+
 def getUserEmail(credentials):
     token = credentials.id_token['sub']
         
@@ -51,7 +56,7 @@ def getUserEmail(credentials):
     user_document = users_service.userinfo().get().execute() 
     user_email = user_document['email']
     return user_email
- 
+
 @error(404)
 def error404(error):
     return template('error') 
@@ -66,8 +71,8 @@ def decide_page_num():
         page_num = int(page_num)+1
     else:
         page_num = int(new_page_num)     
-    return template('index',keywords=keywords,record=record, user_email=user_email,resolved_inverted_index=resolved_inverted_index, lexicon=lexicon,page_rank=page_rank,page_num=page_num)
-          
+    return template('index',keywords=keywords,record=record, user_email=user_email,resolved_inverted_index=resolved_inverted_index, lexicon=lexicon,page_rank=page_rank,page_num=page_num,words=words)
+            
 @route('/',method='GET')
 def index():
     global user_email,record
@@ -77,7 +82,7 @@ def index():
     else:
         record = OrderedDict()
         
-    return template('index',keywords='',record=record,  user_email=user_email)
+    return template('index',keywords='',record=record,  user_email=user_email, words=words)
 
 @route('/login_step1',method='POST')
 def login_step1():
@@ -90,12 +95,12 @@ def login_step2():
     user_email = request.forms.get('email')
     session = bottle.request.environ.get('beaker.session')
     if  user_email not in session:
-        flow = flow_from_clientsecrets("client_secret_236907109154-1us7tahjvssjcmtfk3orivipcjr4lult.apps.googleusercontent.com.json",scope='https://www.googleapis.com/auth/plus.me https://www.googleapis.com/auth/userinfo.email', redirect_uri="http://localhost:80/redirect")
+        flow = flow_from_clientsecrets("client_secret_236907109154-1us7tahjvssjcmtfk3orivipcjr4lult.apps.googleusercontent.com.json",scope='https://www.googleapis.com/auth/plus.me https://www.googleapis.com/auth/userinfo.email', redirect_uri="http://localhost:8080/redirect")
         auth_uri = flow.step1_get_authorize_url()
         bottle.redirect(str(auth_uri))
     else:
         record = session[user_email]
-        return template('index',keywords='',record=record, user_email=user_email)
+        return template('index',keywords='',record=record, user_email=user_email, words=words)
         
 
 @route('/logout',method='POST')
@@ -111,8 +116,8 @@ def redirect_page():
     global user_email,record
     CLIENT_ID = '236907109154-1us7tahjvssjcmtfk3orivipcjr4lult.apps.googleusercontent.com'
     CLIENT_SECRET = 'mvAagtXMQyUTMS0EMkTRhsOM'
-    SCOPE = 'https://www.googleapis.com/auth/plus.me https://www.googleapis.com/auth/userinfo.email'
-    REDIRECT_URI = 'http://localhost:80/redirect'
+    SCOPE = 'https://www.googleapis.com/auth/calendar'
+    REDIRECT_URI = 'http://localhost:8080/redirect'
     code = request.query.get('code', '')
     flow = OAuth2WebServerFlow(client_id=CLIENT_ID,client_secret=CLIENT_SECRET,scope=SCOPE,redirect_uri=REDIRECT_URI)        
     credentials = flow.step2_exchange(code)
@@ -121,7 +126,7 @@ def redirect_page():
     session[user_email] = OrderedDict()
     record = session[user_email]
     
-    return template('index',keywords='',record=record, user_email=user_email)
+    return template('index',keywords='',record=record, user_email=user_email,words=words)
 # the route to load the logo image
 @route('/static/<filename>')
 def server_static(filename):
@@ -137,6 +142,6 @@ def result():
         record = OrderedDict()
     keywords = request.forms.get('keywords')
     page_num = 1
-    return template('index',keywords=keywords,record=record, user_email=user_email,resolved_inverted_index=resolved_inverted_index, lexicon=lexicon,page_rank=page_rank,page_num=page_num)
-
-run(app=app, host='0.0.0.0', port=80)
+    return template('index',keywords=keywords,record=record, user_email=user_email,resolved_inverted_index=resolved_inverted_index, lexicon=lexicon,page_rank=page_rank,page_num=page_num,words=words)
+    
+run(app=app, host='0.0.0.0', port=8080)
