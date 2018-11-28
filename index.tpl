@@ -116,7 +116,8 @@
 	  end
 	  
 	  ranked_url = sorted(ranked_url.iteritems())	
-	  num_of_page = len(ranked_url)/5+1     
+	  raminder = len(ranked_url)%5
+	  num_of_page = len(ranked_url)/5+1 if raminder==0 else len(ranked_url)/5+2   
 	  curr_page = int(page_num)
 %>
 	<table id=”results” style="margin:auto">
