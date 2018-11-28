@@ -51,16 +51,16 @@
 </style>
 <body>
 % if user_email:
-	<form action="/logout" method="post">
+	<!--<form action="/logout" method="post">
         <input value="Sign out" type="submit" style="float:right;margin-left:0.5em"/>
-    </form>
+    </form>-->
 	<span style="float:right;">Welcome, {{user_email}}</span>
 	<br>
 
 % else:
-	<form action="/login_step1" method="post">
+	<!--<form action="/login_step1" method="post">
         <input value="Sign in" type="submit" style="float:right;margin-left:0.5em"/>
-    </form>
+    </form>-->
 	<span style="float:right;">Welcome, anonymous</span>
 	<br>
 	
