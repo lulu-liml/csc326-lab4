@@ -111,8 +111,12 @@
 	  ranked_url = {}
 	  for url in urls:
 	  	 url_id = lexicon[url]
-		 url_score = page_rank[str(url_id)]
-		 ranked_url[url_score] = url
+                 strid = str(url_id)
+                 if page_rank.get(strid)!=None:
+		      url_score = page_rank[strid]
+                      print url_score
+		      ranked_url[url_score] = url
+                 end
 	  end
 	  
 	  ranked_url = sorted(ranked_url.iteritems())	
