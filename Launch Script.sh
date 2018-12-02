@@ -2,8 +2,6 @@
 pip install boto
 echo "please make sure that you download aws cli first"
 aws configure
-AKIAJUX2APB3MOU4SFDA
-sVqUNtmtXQguZjhGos5vaemaCmIdVToYploVrXl0
 us-east-1
 None
 
@@ -11,7 +9,7 @@ None
 python - << EOF
 import boto.ec2
 conn = boto.ec2.connect_to_region("us-east-1")
-inst = ["i-00718e443616ff866"]
+inst = ["i"]
 # start to run the instance  
 runinst = conn.start_instances(inst)
 # allocate an elaspe IP address
