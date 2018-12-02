@@ -15,7 +15,7 @@ runinst = conn.start_instances(inst)
 # allocate an elaspe IP address
 eip = conn.allocate_address()
 # associate the Ip address with the running instance
-eip.associate("i-00718e443616ff866")
+eip.associate("i"）
 EOF
 
 # get the public DNS of running instance 
