@@ -10,7 +10,7 @@ conn.disassociate_address(ip)
 alloc=conn.get_all_addresses()[0].__dict__['allocation_id']
 # release the elaspe IP address
 conn.release_address(None,alloc)
-inst = ["i-00718e443616ff866"]  
+inst = [""]  
 # stop the instance
 conn.stop_instances(inst)
 # terminate the instance
